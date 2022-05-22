@@ -1,0 +1,235 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions 
+and smooth scroll */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root {
+  --green-light: #78ce7c;
+  --green-dark: #205a23;
+  --blue-light: #78a3ce;
+  --blue-dark: #203d5a;
+  --orange-light: #f9b55d;
+  --orange-dark: #854d05;
+  --purple-light: #828ece;
+  --purple-dark: #252e5f;
+  --yellow-light: #ece074;
+  --yellow-dark: #827712;
+  --brown-light: #c1886c;
+  --brown-dark: #442a1d;
+  --red-light: #db7575;
+  --red-dark: #691b1b;
+  --pink-light: #c075c7;
+  --pink-dark: #4c2150;
+  --white-light: #e6e6e6;
+  --white-dark: gray;
+}
+
+body {
+  font-family: system-ui;
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  overflow: hidden;
+}
+
+.orbit {
+  --size: 12rem;
+  --speed: 120s;
+}
+.orbit .center-image {
+  width: var(--size);
+  position: relative;
+  z-index: 10;
+}
+.orbit .center-image img {
+  position: absolute;
+  transition: opacity 500ms;
+  border-radius: 25%;
+}
+.orbit .center-image img:not(:first-child):hover {
+  opacity: 0;
+}
+.orbit ul {
+  display: grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+  list-style: none;
+  transform-origin: center;
+  animation: orbit var(--speed) linear infinite;
+}
+.orbit ul:hover {
+  animation-play-state: paused;
+  --orbit-play-state: paused;
+}
+.orbit li {
+  position: absolute;
+  width: 8rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  color: var(--white-light);
+  display: grid;
+  place-items: center;
+}
+.orbit li img {
+  max-width: 60%;
+  max-height: 60%;
+}
+.orbit li:nth-child(1) {
+  --pulse-delay: 0ms;
+}
+.orbit li:nth-child(2) {
+  --pulse-delay: 500ms;
+}
+.orbit li:nth-child(3) {
+  --pulse-delay: 1000ms;
+}
+.orbit li:nth-child(4) {
+  --pulse-delay: 1500ms;
+}
+.orbit li:nth-child(5) {
+  --pulse-delay: 2000ms;
+}
+.orbit li:nth-child(6) {
+  --pulse-delay: 2500ms;
+}
+.orbit li:nth-child(7) {
+  --pulse-delay: 3000ms;
+}
+.orbit li:nth-child(8) {
+  --pulse-delay: 3500ms;
+}
+.orbit li > * {
+  width: 90%;
+  height: 90%;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  position: absolute;
+}
+.orbit li > div {
+  background-color: var(--icon-bg);
+}
+.orbit li > p {
+  background: var(--text-bg);
+  transition: opacity 500ms;
+  opacity: 0;
+  font-weight: 450;
+  text-align: center;
+  line-height: 1.2;
+}
+.orbit li:hover > p {
+  opacity: 1;
+}
+.orbit li .scaler {
+  animation: pulse 1.25s var(--pulse-delay) ease-in-out infinite alternate;
+}
+.orbit li p.spinner {
+  animation: spinReverse var(--speed) linear reverse infinite;
+  animation-play-state: var(--spinReverse-play-state, running);
+}
+.orbit img.spinner {
+  animation: spinReverse var(--speed) linear reverse infinite;
+  animation-play-state: var(--spinReverse-play-state, running);
+}
+.orbit:hover {
+  animation-play-state: paused;
+  --spinReverse-play-state: paused;
+}
+.orbit li:nth-child(1) {
+  --icon-bg: var(--blue-light);
+  --text-bg: var(--blue-dark);
+  transform: translate(15rem, 0rem);
+}
+.orbit li:nth-child(2) {
+  --icon-bg: var(--green-light);
+  --text-bg: var(--green-dark);
+  transform: translate(11rem, 11rem);
+}
+.orbit li:nth-child(3) {
+  --icon-bg: var(--purple-light);
+  --text-bg: var(--purple-dark);
+  transform: translate(0rem, 15rem);
+}
+.orbit li:nth-child(4) {
+  --icon-bg: var(--red-light);
+  --text-bg: var(--red-dark);
+  transform: translate(-11rem, 11rem);
+}
+.orbit li:nth-child(5) {
+  --icon-bg: var(--brown-light);
+  --text-bg: var(--brown-dark);
+  transform: translate(-15rem, 0rem);
+}
+.orbit li:nth-child(6) {
+  --icon-bg: var(--yellow-light);
+  --text-bg: var(--yellow-dark);
+  transform: translate(-11rem, -11rem);
+}
+.orbit li:nth-child(7) {
+  --icon-bg: var(--pink-light);
+  --text-bg: var(--pink-dark);
+  transform: translate(0rem, -15rem);
+}
+.orbit li:nth-child(8) {
+  --icon-bg: var(--orange-light);
+  --text-bg: var(--orange-dark);
+  transform: translate(11rem, -11rem);
+}
+
+@keyframes orbit {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+@keyframes spinReverse {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+@keyframes pulse {
+  100% {
+    transform: scaleX(1.5) scaleY(1.5);
+  }
+}
